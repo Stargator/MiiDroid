@@ -1,0 +1,16 @@
+dependencies:
+  override:
+   - chmod +x gradlew
+  pre:
+    - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository,extra-android-support"
+
+test:
+  override:
+    - chmod +x gradlew
+    - ./gradlew assembleDebug
+
+deployment:
+  hockey:
+    branch: my-work
+    commands:
+      - source scripts/deployHockeyApp.sh && uploadToHockeyApp
